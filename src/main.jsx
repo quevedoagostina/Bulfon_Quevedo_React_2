@@ -16,7 +16,14 @@ import Error404 from './pages/Error404';
 import Login from './pages/Login';
 import { AuthProvider } from './components/AuthContext';
 
-const theme = createTheme();
+// Crea tu tema personalizado
+const theme = createTheme({
+  palette: {
+    mode: "light", // o "dark"
+    // otras propiedades de la paleta
+  },
+  // otras propiedades del tema
+});
 
 const router = createBrowserRouter([
   {

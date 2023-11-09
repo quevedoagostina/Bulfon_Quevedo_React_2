@@ -1,7 +1,22 @@
 import React, { useState } from "react";
 import LMain from "../layouts/LMain";
-import { Typography, List, ListItem, Button } from "@mui/material";
+import { Typography, List, ListItem, Button, Divider, styled } from "@mui/material";
 import todos from "../data/todos.json";
+
+// Estilos personalizados para el estado "Completado" o "Pendiente"
+const TaskItem = styled(ListItem)({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  borderBottom: "1px solid #ccc",
+  padding: "8px 0",
+});
+
+const StatusText = styled("span")({
+  fontWeight: "bold",
+  marginLeft: "8px",
+  color: (props) => (props.completed ? "green" : "red"),
+});
 
 export default function TaskList(props) {
   const [taskList, setTaskList] = useState(todos);
@@ -37,17 +52,22 @@ export default function TaskList(props) {
       <Typography variant="h4">Lista de tareas</Typography>
       <List>
         {taskList.slice(menor, mayor).map((task) => (
-          <ListItem key={task.id}>
-            {task.title}
-            {task.completed ? "Completado" : "Pendiente"}
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={() => handleToggleComplete(task.id)}
-            >
-              Cambiar Estado
-            </Button>
-          </ListItem>
+          <React.Fragment key={task.id}>
+            <TaskItem>
+              <Typography variant="body1">{task.title}</Typography>
+              <StatusText completed={task.completed}>
+                {task.completed ? "Completado" : "Pendiente"}
+              </StatusText>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => handleToggleComplete(task.id)}
+              >
+                Cambiar Estado
+              </Button>
+            </TaskItem>
+            <Divider />
+          </React.Fragment>
         ))}
       </List>
       <Button variant="contained" color="primary" onClick={handlePageMinus}>
@@ -59,4 +79,3 @@ export default function TaskList(props) {
     </LMain>
   );
 }
-

@@ -2,14 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, AppBar, Toolbar, Typography } from "@mui/material";
 import { useAuth } from "../components/AuthContext";
+import myLogo from "../assets/logo.png"; // Agregado
+
 
 export default function Menu() {
   const { setIsDarkMode, isDarkMode } = useAuth(); // Agregado isDarkMode
 
   return (
-    <AppBar position="static">
+    <AppBar background position="static">
       <Toolbar>
-        <Typography variant="h6">TO-DO</Typography>
+        <img
+          src={myLogo}
+          alt="Logo"
+          fontSize="16px"
+        />
         <Button component={Link} to="/" color="inherit">
           Home
         </Button>
@@ -31,4 +37,6 @@ export default function Menu() {
       </Toolbar>
     </AppBar>
   );
+  
+  
 }
