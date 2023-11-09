@@ -44,8 +44,6 @@ function LoginForm() {
 export default LoginForm;
 
 
-
-
 /*
 // User Login info
 const database = [

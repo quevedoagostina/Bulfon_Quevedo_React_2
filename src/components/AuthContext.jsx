@@ -1,5 +1,13 @@
 import React, { createContext, useContext, useState } from 'react';
-import { Button, Container, Paper } from '@mui/material';
+import { Button, Paper } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 const AuthContext = createContext();
 
@@ -9,30 +17,20 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const login = () => {
     setIsLoggedIn(true);
   };
 
-  const logout = () => {
-    setIsLoggedIn(false);
-  };
+  const theme = isDarkMode ? darkTheme : createTheme();
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
-      <Container maxWidth="xs">
-        <Paper elevation={3} style={{ padding: '20px', textAlign: 'center' }}>
-          <h2>{isLoggedIn ? 'Bienvenido' : 'Iniciar sesión'}</h2>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={isLoggedIn ? logout : login}
-          >
-            {isLoggedIn ? 'Cerrar sesión' : 'Iniciar sesión'}
-          </Button>
-        </Paper>
+    <AuthContext.Provider value={{ isLoggedIn, login, setIsDarkMode }}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
         {children}
-      </Container>
+      </ThemeProvider>
     </AuthContext.Provider>
   );
 }

@@ -1,0 +1,23 @@
+.header {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 64px;
+    background-color: #000;
+  }
+  
+  .header .title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .header .button {
+    margin-top: 16px;
+  }
+  
+  .app-bar {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  

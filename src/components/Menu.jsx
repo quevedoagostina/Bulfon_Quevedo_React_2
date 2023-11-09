@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button, AppBar, Toolbar, Typography } from "@mui/material";
+import { useAuth } from "../components/AuthContext";
 
 export default function Menu() {
+  const { setIsDarkMode, isDarkMode } = useAuth(); // Agregado isDarkMode
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -18,6 +21,12 @@ export default function Menu() {
         </Button>
         <Button component={Link} to="/login" color="inherit">
           Login
+        </Button>
+        <Button
+          color="inherit"
+          onClick={() => setIsDarkMode((prevMode) => !prevMode)}
+        >
+          Modo {isDarkMode ? 'luz' : 'oscuro'}
         </Button>
       </Toolbar>
     </AppBar>

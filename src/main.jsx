@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
-import '@fontsource/roboto/300.css'; // Importa el peso 300 (light) de la fuente Roboto
-import '@fontsource/roboto/400.css'; // Importa el peso 400 (regular) de la fuente Roboto
-import '@fontsource/roboto/500.css'; // Importa el peso 500 (medium) de la fuente Roboto
-import '@fontsource/roboto/700.css'; // Importa el peso 700 (bold) de la fuente Roboto
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 import Home from './pages/Home.jsx';
 import Contact from './pages/Contact.jsx';
