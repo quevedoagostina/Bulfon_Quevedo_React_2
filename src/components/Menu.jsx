@@ -1,21 +1,18 @@
+// Menu
 import React from "react";
 import { Link } from "react-router-dom";
-import { Button, AppBar, Toolbar, Typography } from "@mui/material";
+import { Button, AppBar, Toolbar, Typography, useTheme } from "@mui/material";
 import { useAuth } from "../components/AuthContext";
-import myLogo from "../assets/logo.png"; // Agregado
-
+import myLogo from "../assets/logo.png";
 
 export default function Menu() {
-  const { setIsDarkMode, isDarkMode } = useAuth(); // Agregado isDarkMode
+  const { setIsDarkMode, isDarkMode } = useAuth();
+  const theme = useTheme();
 
   return (
     <AppBar background position="static">
       <Toolbar>
-        <img
-          src={myLogo}
-          alt="Logo"
-          fontSize="16px"
-        />
+        <img src={myLogo} alt="Logo" fontSize="16px" />
         <Button component={Link} to="/" color="inherit">
           Home
         </Button>
@@ -32,11 +29,10 @@ export default function Menu() {
           color="inherit"
           onClick={() => setIsDarkMode((prevMode) => !prevMode)}
         >
-          Modo {isDarkMode ? 'luz' : 'oscuro'}
+          Modo {theme.palette.mode === 'dark' ? 'claro' : 'oscuro'}
         </Button>
       </Toolbar>
     </AppBar>
   );
-  
-  
 }
+

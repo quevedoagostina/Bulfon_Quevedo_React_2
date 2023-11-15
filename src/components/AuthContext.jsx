@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState } from 'react';
-import { Button, Paper } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+// AuthProvider
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { Button, Paper, ThemeProvider, createTheme } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 
 const darkTheme = createTheme({
@@ -8,6 +8,8 @@ const darkTheme = createTheme({
     mode: 'dark',
   },
 });
+
+const lightTheme = createTheme();
 
 const AuthContext = createContext();
 
@@ -18,12 +20,15 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [theme, setTheme] = useState(lightTheme);
 
   const login = () => {
     setIsLoggedIn(true);
   };
 
-  const theme = isDarkMode ? darkTheme : createTheme();
+  useEffect(() => {
+    setTheme(isDarkMode ? darkTheme : lightTheme);
+  }, [isDarkMode]);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, setIsDarkMode }}>
@@ -34,3 +39,4 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
